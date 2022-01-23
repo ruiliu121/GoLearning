@@ -1,0 +1,23 @@
+1、使用 redis benchmark 工具, 测试 10 20 50 100 200 1k 5k 字节 value 大小，redis get set 性能。
+#redis-benchmark -d 10 -t get,set
+
+	执行次数和耗时	每秒请求次数
+10	100000 requests completed in 3.81 seconds	25920.08 requests per second
+20	100000 requests completed in 3.83 seconds	26555.03 requests per second
+50	100000 requests completed in 3.94 seconds	25649.31 requests per second
+100	100000 requests completed in 3.97 seconds	24938.26 requests per second
+200	100000 requests completed in 3.78 seconds	25788.12 requests per second
+1k	100000 requests completed in 3.92 seconds	25016.38 requests per second
+5k	100000 requests completed in 4.87 seconds	20320.63 requests per second
+###GET		
+-	执行次数和耗时	每秒请求次数
+----	----	----
+10	100000 requests completed in 3.76 seconds	26737.65 requests per second
+20	100000 requests completed in 3.99 seconds	25125.61 requests per second
+50	100000 requests completed in 3.79 seconds	25853.53 requests per second
+100	100000 requests completed in 3.81 seconds	25676.91 requests per second
+200	100000 requests completed in 3.86 seconds	25843.72 requests per second
+1k	100000 requests completed in 4.03 seconds	25495.33 requests per second
+5k	100000 requests completed in 4.66 seconds	20854.43 requests per second
+
+2、写入一定量的 kv 数据, 根据数据大小 1w-50w 自己评估, 结合写入前后的 info memory 信息 , 分析上述不同 value 大小下，平均每个 key 的占用内存空间。
